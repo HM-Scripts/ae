@@ -11,20 +11,52 @@ if (app.settings.haveSetting('HM_makeSprite', 'textBox')) {
 w.gr1 = w.add('group');
 w.gr1.orientation = 'column';
 w.gr1.alignment = ['fill', 'fill'];
-w.gr2 = w.gr1.add('group');
+
+tabP = w.gr1.add('tabbedpanel');
+tabP.alignment = ['fill', 'fill'];
+tab1 = tabP.add('tab', undefined, 'ノーマル');
+tab2 = tabP.add('tab', undefined, 'レガシー');
+tab1.orientation = 'column';
+tab2.orientation = 'column';
+
+//Tab1
+tgr11 = tab1.add('group');
+tgr11.orientation = 'row';
+tgr11.alignment = ['fill', 'top'];
+tgr11.text1 = tgr11.add('statictext', undefined, 'シートの横幅：');
+tgr11.dwn1 = tgr11.add('dropdownlist', undefined, ['Free', '256 px', '512 px', '1024 px', '2048 px', '4096 px']);
+tgr11.dwn1.minimumSize = [48, 32];
+tgr11.dwn1.selection = 0;
+
+tgr12 = tab1.add('group');
+tgr12.orientation = 'row';
+tgr12.alignment = ['fill', 'center'];
+tgr12.text2 = tgr12.add('statictext', undefined, '横の数：');
+tgr12.textbox = tgr12.add('edittext' , undefined, textBoxValue);
+tgr12.check = tgr12.add('checkbox', undefined, '自動');
+tgr12.textbox.alignment = ['fill', 'center'];
+tgr12.textbox.minimumSize = [48, 32];
+tgr12.check.alignment = ['fill', 'right'];
+
+tgr12.btn = tab1.add('button', undefined, 'スプライトシートを作成');
+tgr12.btn.alignment = ['fill', 'top'];
+
+//Tab2
+w.gr2 = tab2.add('group');
 w.gr2.orientation = 'row';
 w.gr2.alignment = ['fill', 'top']
 w.gr2.text1 = w.gr2.add('statictext' , undefined, '横の数');
 w.gr2.textbox = w.gr2.add('edittext' , undefined, textBoxValue);
-w.gr2.text1.alignment = ['left', 'center']
-w.gr2.textbox.alignment = ['fill', 'center']
-w.gr2.textbox.minimumSize = [48, 32]
+w.gr2.text1.alignment = ['left', 'center'];
+w.gr2.textbox.alignment = ['fill', 'center'];
+w.gr2.textbox.minimumSize = [48, 32];
 w.gr1.text2 = w.gr1.add('statictext' , undefined, '縦の数は自動で設定されます。');
-w.gr3 = w.gr1.add('group');
+w.gr3 = tab2.add('group');
 w.gr3.orientation = 'row';
 w.gr3.alignment = ['fill', 'top'];
-w.gr3.btn = w.gr3.add('button', undefined, 'スプライトシートを作成');
+w.gr3.btn = tab2.add('button', undefined, 'スプライトシートを作成');
 w.gr3.btn.alignment = ['fill', 'top'];
+
 w.gr4 = w.gr1.add('group');
 w.gr4.orientation = 'row';
 w.gr4.alignment = ['right', 'bottom'];
@@ -36,6 +68,14 @@ w.onResize = function(){
 
 w.layout.layout();
 if (w instanceof Window) w.show();
+
+tgr12.check.onClick = function () {
+    if(tgr12.check.value == true) {
+        tgr12.textbox.enabled = false;
+    } else {
+        tgr12.textbox.enabled = true;
+    }
+}
 
 w.gr3.btn.onClick = function () {
     makeSprite(Number(w.gr2.textbox.text));
