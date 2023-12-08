@@ -81,8 +81,8 @@ w.gr3.btn.onClick = function () {
     makeSprite(Number(w.gr2.textbox.text));
 };
 
-function makeSprite(item_rowLength) {
-    if (isNaN(item_rowLength) || item_rowLength <= 0) {
+tgr12.btn.onClick =  function makeSprite(item_rowLength) {
+    if (isNaN(item_rowLength) || item_rowLength <= 0 || item_rowLength % 1 != 0) {
         alert("自然数を入力してください", 'Warning');
         return;
     }
