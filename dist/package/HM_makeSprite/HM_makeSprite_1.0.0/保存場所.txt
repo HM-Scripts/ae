@@ -1,0 +1,4 @@
+C:\Program Files\Adobe\Adobe After Effects [version]\Support Files\Scripts\ScriptUI Panels\
+
+配置後のパス
+C:\Program Files\Adobe\Adobe After Effects [version]\Support Files\Scripts\ScriptUI Panels\HM_makeSprite.jsx
