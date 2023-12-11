@@ -38,7 +38,7 @@ w.gr1.text2 = w.gr1.add('statictext' , undefined, '縦の数は自動で設定�
 w.grv = w.gr1.add('group');
 w.grv.orientation = 'row';
 w.grv.alignment = ['right', 'bottom'];
-version_text = w.grv.add('statictext' , undefined, 'version: 1.1.0');
+version_text = w.grv.add('statictext' , undefined, 'version: 1.1.1');
 
 w.onResize = function(){
     w.layout.resize();
@@ -113,7 +113,7 @@ run_btn.onClick = function () {
         var sheet_height = item_height * item_columnLength;
         var compName;
         var comp_width = resolution == 0 ? sheet_width : resolution;
-        var comp_height = resolution == 0 ? sheet_height : resolution;
+        var comp_height = resolution == 0 ? sheet_height : Math.ceil(sheet_height * (comp_width / sheet_width));
         var comp_duration = 1 / item_frameRate;
         var comp_frameRate = item_frameRate;
         var sheet_scale = comp_width / sheet_width * 100;
